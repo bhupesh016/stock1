@@ -1,0 +1,90 @@
+<div class="container-fluid">
+    <!-- Toggle Button -->
+    <button class="btn btn-primary toggle-btn" (click)="toggleSidebar()" [ngStyle]="{
+        position: 'absolute',
+        top: '15px',
+        left: sidebarVisible ? '260px' : '15px',
+        transition: 'left 0.3s ease-in-out'
+      }">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <div [ngClass]="{
+        sidebar: true,
+        show: sidebarVisible,
+        'responsive-sidebar': isResponsive
+      }" (window:resize)="onResize($event)">
+        <div class="position-sticky pt-3">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-th"></i> Widgets
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-chart-pie"></i> Charts
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content" [ngClass]="{ shift: sidebarVisible }">
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2" style="margin-left: 50px;">Dashboard</h1>
+        </div>
+
+        <div class="container mt-4">
+            <div class="table-responsive" *ngIf="portfolioData.length > 0; else noData">
+                <table class="table table-bordered table-hover table-striped">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Invested Amount</th>
+                            <th>Bonus on Monthly Return</th>
+                            <th>Monthly Return on Investment</th>
+                            <th>Total Monthly Return</th>
+                            <th>Monthly Payable</th>
+                            <th>Yearly Return</th>
+                            <th>Yearly TDS</th>
+                            <th>Monthly TDS</th>
+                            <th>Total Payable</th>
+                            <th>Paid Till Now</th>
+                            <th>Current Calculated Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of portfolioData">
+                            <td>{{ data.investedAmount }}</td>
+                            <td>{{ data.bonusOnMonthlyReturn }}</td>
+                            <td>{{ data.monthlyReturnOnInvestment }}</td>
+                            <td>{{ data.totalMonthlyReturn }}</td>
+                            <td>{{ data.monthlyPayable }}</td>
+                            <td>{{ data.yearlyReturn }}</td>
+                            <td>{{ data.yearlyTds }}</td>
+                            <td>{{ data.monthlyTds }}</td>
+                            <td>{{ data.totalPayable }}</td>
+                            <td>{{ data.paidTillNow }}</td>
+                            <td>{{ data.currentCalculatedAmount }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+<ng-template #noData>
+    <p>No data available.</p>
+</ng-template>

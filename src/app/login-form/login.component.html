@@ -1,0 +1,54 @@
+<body>
+    <img class="wave" src="https://raw.githubusercontent.com/sefyudem/Responsive-Login-Form/master/img/wave.png">
+    <div class="container">
+        <div class="img">
+            <img src="https://raw.githubusercontent.com/sefyudem/Responsive-Login-Form/master/img/bg.svg">
+        </div>
+        <div class="login-content">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+                <img src="https://raw.githubusercontent.com/sefyudem/Responsive-Login-Form/master/img/avatar.svg"
+                    alt="User Avatar">
+                <h2 class="title">Welcome</h2>
+
+                <!-- Email Input -->
+                <div class="input-div one" [ngClass]="{ 'error': email?.invalid && email?.touched }">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="div">
+                        <input type="email" formControlName="email" placeholder="Email" class="input" />
+                        <!-- Error Messages -->
+                        <div *ngIf="email?.invalid && email?.touched" class="error-message">
+                            <small *ngIf="email?.errors?.['required']">Email is required.</small>
+                            <small *ngIf="email?.errors?.['email']">Invalid email format.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Password Input -->
+                <div class="input-div pass" [ngClass]="{ 'error': password?.invalid && password?.touched }">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <input type="password" formControlName="password" placeholder="Password" class="input" />
+                        <!-- Error Messages -->
+                        <div *ngIf="password?.invalid && password?.touched" class="error-message">
+                            <small *ngIf="password?.errors?.['required']">Password is required.</small>
+                            <small *ngIf="password?.errors?.['minlength']">
+                                Password must be at least 6 characters.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <a routerLink="/registar">Don’t have an account? Register Now</a>
+                <button type="submit" class="btn" [disabled]="loginForm.invalid">Login</button>
+            </form>
+
+
+
+        </div>
+    </div>
+
+</body>
