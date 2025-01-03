@@ -1,0 +1,89 @@
+<body>
+    <img class="wave" src="https://raw.githubusercontent.com/sefyudem/Responsive-Login-Form/master/img/wave.png">
+    <div class="container">
+        <div class="img">
+            <img src="https://raw.githubusercontent.com/sefyudem/Responsive-Login-Form/master/img/bg.svg">
+        </div>
+        <div class="login-content">
+            <form [formGroup]="registrationForm" (ngSubmit)="onRegister()" novalidate>
+                <img src="https://raw.githubusercontent.com/sefyudem/Responsive-Login-Form/master/img/avatar.svg"
+                    alt="User Avatar" />
+                <h2 class="title">Register</h2>
+
+                <!-- First Name Input -->
+                <div class="input-div one" [ngClass]="{ 'error': firstName?.invalid && firstName?.touched }">
+                    <div class="i"><i class="fas fa-user"></i></div>
+                    <div class="div">
+                        <input type="text" formControlName="firstName" placeholder="First Name" class="input" />
+                        <div *ngIf="firstName?.invalid && firstName?.touched" class="error-message">
+                            <small *ngIf="firstName?.errors?.['required']">First Name is required.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Last Name Input -->
+                <div class="input-div one" [ngClass]="{ 'error': lastName?.invalid && lastName?.touched }">
+                    <div class="i"><i class="fas fa-user"></i></div>
+                    <div class="div">
+                        <input type="text" formControlName="lastName" placeholder="Last Name" class="input" />
+                        <div *ngIf="lastName?.invalid && lastName?.touched" class="error-message">
+                            <small *ngIf="lastName?.errors?.['required']">Last Name is required.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email Input -->
+                <div class="input-div one" [ngClass]="{ 'error': email?.invalid && email?.touched }">
+                    <div class="i"><i class="fas fa-envelope"></i></div>
+                    <div class="div">
+                        <input type="email" formControlName="email" placeholder="Email" class="input" />
+                        <div *ngIf="email?.invalid && email?.touched" class="error-message">
+                            <small *ngIf="email?.errors?.['required']">Email is required.</small>
+                            <small *ngIf="email?.errors?.['email']">Invalid email format.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone Number Input -->
+                <div class="input-div one" [ngClass]="{ 'error': phoneNumber?.invalid && phoneNumber?.touched }">
+                    <div class="i"><i class="fas fa-phone"></i></div>
+                    <div class="div">
+                        <input type="text" formControlName="phoneNumber" placeholder="Phone Number" class="input" />
+                        <div *ngIf="phoneNumber?.invalid && phoneNumber?.touched" class="error-message">
+                            <small *ngIf="phoneNumber?.errors?.['required']">Phone Number is required.</small>
+                            <small *ngIf="phoneNumber?.errors?.['pattern']">Invalid phone number format.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Password Input -->
+                <div class="input-div pass" [ngClass]="{ 'error': password?.invalid && password?.touched }">
+                    <div class="i"><i class="fas fa-lock"></i></div>
+                    <div class="div">
+                        <input type="password" formControlName="password" placeholder="Password" class="input" />
+                        <div *ngIf="password?.invalid && password?.touched" class="error-message">
+                            <small *ngIf="password?.errors?.['required']">Password is required.</small>
+                            <small *ngIf="password?.errors?.['minlength']">Password must be at least 6
+                                characters.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="terms">
+                    <input type="checkbox" formControlName="flagTermsAndCondition" id="terms" />
+                    <label for="terms">I agree to the <a href="#">Terms and Conditions</a></label>
+                    <div *ngIf="flagTermsAndCondition?.invalid && flagTermsAndCondition?.touched" class="error-message">
+                        <small>Accepting terms and conditions is required.</small>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn" [disabled]="registrationForm.invalid">Register</button>
+            </form>
+
+
+
+        </div>
+    </div>
+
+</body>
